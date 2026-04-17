@@ -34,13 +34,15 @@ function App() {
       return msg;
     };
 
+    const API_BASE = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000';
+
     try {
-      const leftPromise = axios.post('http://localhost:3000/api/imagery', configLeft);
+      const leftPromise = axios.post(`${API_BASE}/api/imagery`, configLeft);
       
       if (configRight) {
         const [leftRes, rightRes] = await Promise.allSettled([
           leftPromise,
-          axios.post('http://localhost:3000/api/imagery', configRight)
+          axios.post(`${API_BASE}/api/imagery`, configRight)
         ]);
         
         if (leftRes.status === 'fulfilled') {

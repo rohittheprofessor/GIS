@@ -4,7 +4,7 @@ const { spawn } = require('child_process');
 const path = require('path');
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 app.use(cors());
 app.use(express.json());
@@ -45,8 +45,8 @@ app.post('/api/imagery', (req, res) => {
 
   console.log(`Executing python scripts with args: ${args.join(' ')}`);
 
-  // Spawn Python script (override with PYTHON env var if needed)
-  const pythonCmd = process.env.PYTHON || 'py';
+  // Spawn Python script (override with PYTHON env var if needed, default to python3 for dockerized linux env)
+  const pythonCmd = process.env.PYTHON || 'python3';
   const pythonProcess = spawn(pythonCmd, args);
 
   let dataString = '';
