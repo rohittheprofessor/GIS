@@ -97,6 +97,9 @@ function App() {
           )}
         </section>
       </main>
+      <footer style={{ textAlign: 'center', padding: '20px', marginTop: '20px', color: '#666', fontSize: '14px', borderTop: '1px solid #eee' }}>
+        Built by Rohit Kumar Singh
+      </footer>
     </div>
   );
 }
