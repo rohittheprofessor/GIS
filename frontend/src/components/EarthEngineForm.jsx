@@ -175,11 +175,7 @@ const EarthEngineForm = ({ onSubmit, isLoading }) => {
 
         <div className="form-section-header">System Settings</div>
         <div className="input-row">
-          <div className="input-group">
-            <label>Google Cloud Project ID (Required)</label>
-            <input type="text" name="projectId" placeholder="my-gee-project-12345" value={formData.projectId} onChange={handleChange} required />
-          </div>
-          <div className="input-group" style={{ display: 'flex', alignItems: 'flex-end', paddingBottom: '10px' }}>
+          <div className="input-group" style={{ display: 'flex', alignItems: 'flex-start', paddingBottom: '10px' }}>
             <div className="input-checkbox">
               <input type="checkbox" id="useMock" name="useMock" checked={formData.useMock} onChange={handleChange} />
               <label htmlFor="useMock">Use Mock Fallback</label>
