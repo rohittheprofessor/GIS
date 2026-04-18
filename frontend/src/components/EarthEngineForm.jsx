@@ -101,7 +101,7 @@ const EarthEngineForm = ({ onSubmit, isLoading }) => {
           </div>
         </div>
 
-        <div style={{ display: 'flex', gap: '20px' }}>
+        <div className="split-container">
           {/* Main / Left Pane Configuration */}
           <div style={{ flex: 1 }}>
             <div className="form-section-header">{formData.splitScreen ? 'Left View' : 'Temporal & Visual Settings'}</div>
@@ -138,7 +138,7 @@ const EarthEngineForm = ({ onSubmit, isLoading }) => {
 
           {/* Right Pane Configuration (Only if splitScreen is true) */}
           {formData.splitScreen && (
-            <div style={{ flex: 1, borderLeft: '1px solid #eee', paddingLeft: '20px' }}>
+            <div className="right-pane" style={{ flex: 1, borderLeft: '1px solid #eee', paddingLeft: '20px' }}>
               <div className="form-section-header">Right View</div>
               
               <div className="input-row">
