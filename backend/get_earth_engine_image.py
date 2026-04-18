@@ -43,6 +43,9 @@ def main():
         if service_account_json:
             import google.oauth2.service_account
             json_creds = json.loads(service_account_json)
+            # Fix potential escaped newlines caused by env variable stringification
+            if 'private_key' in json_creds:
+                json_creds['private_key'] = json_creds['private_key'].replace('\\n', '\n')
             credentials = google.oauth2.service_account.Credentials.from_service_account_info(json_creds)
             scopes = ['https://www.googleapis.com/auth/earthengine', 'https://www.googleapis.com/auth/cloud-platform']
             scoped_credentials = credentials.with_scopes(scopes)
