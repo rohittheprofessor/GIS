@@ -4,6 +4,7 @@ import base64
 import requests
 import sys
 import json
+import os
 
 def parse_args():
     parser = argparse.ArgumentParser(description='Fetch GEE Image')
@@ -38,10 +39,19 @@ def main():
         get_mock_result(args.mode)
 
     try:
-        if args.project:
-            ee.Initialize(project=args.project)
+        service_account_json = os.environ.get('EE_SERVICE_ACCOUNT_JSON')
+        if service_account_json:
+            import google.oauth2.service_account
+            json_creds = json.loads(service_account_json)
+            credentials = google.oauth2.service_account.Credentials.from_service_account_info(json_creds)
+            # Use provided project arg or fallback to the one in the service account JSON
+            project_id = args.project or json_creds.get('project_id')
+            ee.Initialize(credentials, project=project_id)
         else:
-            ee.Initialize()
+            if args.project:
+                ee.Initialize(project=args.project)
+            else:
+                ee.Initialize()
     except Exception as e:
         print(json.dumps({"error": f"Earth Engine not initialized. {str(e)}"}), file=sys.stderr)
         sys.exit(1)
