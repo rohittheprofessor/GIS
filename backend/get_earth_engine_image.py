@@ -44,9 +44,11 @@ def main():
             import google.oauth2.service_account
             json_creds = json.loads(service_account_json)
             credentials = google.oauth2.service_account.Credentials.from_service_account_info(json_creds)
+            scopes = ['https://www.googleapis.com/auth/earthengine', 'https://www.googleapis.com/auth/cloud-platform']
+            scoped_credentials = credentials.with_scopes(scopes)
             # Use provided project arg or fallback to the one in the service account JSON
             project_id = args.project or json_creds.get('project_id')
-            ee.Initialize(credentials, project=project_id)
+            ee.Initialize(scoped_credentials, project=project_id)
         else:
             if args.project:
                 ee.Initialize(project=args.project)
