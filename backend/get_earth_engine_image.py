@@ -51,6 +51,8 @@ def main():
             scoped_credentials = credentials.with_scopes(scopes)
             # Use provided project arg or fallback to the one in the service account JSON
             project_id = args.project or json_creds.get('project_id')
+            if project_id:
+                project_id = project_id.strip()
             ee.Initialize(scoped_credentials, project=project_id)
         else:
             if args.project:
