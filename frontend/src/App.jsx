@@ -74,7 +74,7 @@ function App() {
   return (
     <div className="app-container" style={{ padding: '20px', boxSizing: 'border-box' }}>
       <header className="hero">
-        <h1>Earth Engine Explorer</h1>
+        <h1>MyGIS – Smart GIS & Remote Sensing Web Platform</h1>
         <p>Advanced geospatial analysis from Google Earth Engine.</p>
       </header>
       
